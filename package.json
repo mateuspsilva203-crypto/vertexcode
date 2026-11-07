@@ -1,0 +1,17 @@
+{
+  "name": "vertexcode-site",
+  "version": "1.0.0",
+  "description": "Site VertexCode com captura de leads em banco SQLite",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}

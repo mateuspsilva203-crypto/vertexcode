@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VertexCode | Software de gestão para o seu negócio</title>
+  <meta name="description" content="Sistema completo de gestão para MEI e pequenas empresas: estoque, PDV, emissão de notas e gestão inteligente. Atendimento em Lavras e região.">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#inicio" class="logo" aria-label="VertexCode">
+      <img src="img/logo.svg" alt="VertexCode" width="150" height="34">
+    </a>
+    <a href="#contato" class="header__link" data-whatsapp>
+      Falar com especialista
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+    </a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero__text reveal">
+        <span class="eyebrow">Software de gestão</span>
+        <h1>
+          Seu negócio<br>
+          <span class="accent">mais simples.</span><br>
+          Mais lucrativo.
+        </h1>
+        <p class="hero__sub">Um sistema completo para você controlar sua empresa, vender mais e cuidar do que realmente importa: o seu negócio.</p>
+
+        <div class="hero__actions">
+          <a href="#contato" class="btn btn--primary" data-whatsapp>
+            Solicitar orçamento
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#solucao" class="btn btn--link">
+            Conheça a solução
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+          </a>
+        </div>
+
+        <ul class="hero__tags">
+          <li><span class="dot"></span>Atendimento em Lavras e região</li>
+          <li>Para MEI e pequenas empresas</li>
+        </ul>
+      </div>
+
+      <div class="hero__visual reveal" aria-hidden="true">
+        <div class="blob"></div>
+
+        <div class="card card--stock">
+          <span class="card__label">Estoque</span>
+          <strong class="card__value">+ 24,8%</strong>
+          <small>crescimento este mês</small>
+          <div class="bars bars--light">
+            <i style="height:40%"></i><i style="height:55%"></i><i style="height:35%"></i>
+            <i style="height:60%"></i><i style="height:50%"></i><i class="is-dark" style="height:78%"></i>
+          </div>
+        </div>
+
+        <div class="card card--sales">
+          <div class="card__top">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg>
+            </span>
+            <span class="online">online</span>
+          </div>
+          <span class="card__label">Vendas hoje</span>
+          <strong class="card__value card__value--lg">R$ <span id="vendas">8.429,90</span></strong>
+          <div class="bars">
+            <i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i>
+            <i style="height:55%"></i><i style="height:48%"></i><i style="height:68%"></i>
+            <i style="height:58%"></i><i class="is-dark" style="height:88%"></i>
+          </div>
+          <small class="card__foot">Resumo do seu negócio</small>
+        </div>
+
+        <div class="chip chip--note"><span class="spark">✦</span> Nota emitida</div>
+        <div class="chip chip--stock"><span class="check">✓</span> Estoque atualizado</div>
+      </div>
+
+      <a href="#solucao" class="scroll-hint"><span></span>role para descobrir</a>
+    </section>
+
+    <!-- SOLUÇÃO -->
+    <section class="solution" id="solucao">
+      <div class="solution__text reveal">
+        <span class="eyebrow">Tudo em um só lugar</span>
+        <h2>A gestão que <span class="accent">cabe no seu negócio.</span></h2>
+        <p>Chega de planilhas e sistemas complicados. O Vertex Code reúne tudo o que sua empresa precisa em uma plataforma simples, completa e feita para crescer com você.</p>
+      </div>
+
+      <div class="solution__grid">
+        <article class="feature reveal">
+          <svg class="feature__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          <h3>Controle de estoque</h3>
+          <p>Entradas, saídas, inventário e produtos sempre organizados.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="feature__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h8"/></svg>
+          <h3>PDV completo</h3>
+          <p>Bipe suas mercadorias e venda com agilidade no caixa.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="feature__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z"/></svg>
+          <h3>Emissão de notas</h3>
+          <p>Emita NF-e e NFC-e de forma simples e segura.</p>
+        </article>
+        <article class="feature reveal">
+          <svg class="feature__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          <h3>Gestão inteligente</h3>
+          <p>Tenha uma visão clara do seu negócio para decidir melhor.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEITO PARA VOCÊ -->
+    <section class="audience" id="segmentos">
+      <div class="audience__title reveal">
+        <span class="eyebrow eyebrow--light">Feito para você</span>
+        <h2>Do seu jeito.<br><span class="accent">No seu ritmo.</span></h2>
+      </div>
+      <div class="audience__body reveal">
+        <p>Se você vende, o Vertex Code ajuda você a administrar. Do primeiro produto cadastrado à venda no PDV, sua operação fica mais leve e profissional.</p>
+        <ul class="pills">
+          <li>Mercados</li><li>Lojas</li><li>Conveniências</li><li>Fruteiras</li>
+          <li>Autopeças</li><li>Farmácias</li><li>Pet shops</li><li>Materiais de construção</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contact" id="contato">
+      <div class="contact__card">
+        <div class="contact__info reveal">
+          <span class="eyebrow">Vamos conversar</span>
+          <h2>Pronto para <span class="accent">vender mais?</span></h2>
+          <p>Conte um pouco sobre o seu negócio. A gente mostra como o Vertex Code pode ajudar.</p>
+
+          <ul class="contact__list">
+            <li>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>
+              <a href="https://wa.me/5535998286500" data-whatsapp>(35) 99828-6500</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              <a href="mailto:vertexcode.ai@gmail.com">vertexcode.ai@gmail.com</a>
+            </li>
+            <li class="accent">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/></svg>
+              Lavras, MG e região
+            </li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="form-orcamento" novalidate>
+          <label for="nome">Como podemos chamar você?</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name">
+
+          <label for="empresa">Nome da sua empresa</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Sua empresa" autocomplete="organization">
+
+          <label for="contato">Contato (WhatsApp / telefone)</label>
+          <input type="tel" id="contato" name="contato" placeholder="(35) 99999-9999" autocomplete="tel" inputmode="tel">
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="voce@empresa.com" autocomplete="email">
+
+          <!-- Campo isca contra robôs: pessoas não veem nem preenchem -->
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button type="submit" class="btn btn--primary btn--block">
+            <span id="btn-texto">Quero meu orçamento</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </button>
+          <small class="form__note" id="form-note">Ao enviar, você será direcionado para o WhatsApp.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="img/logo.svg" alt="VertexCode" width="110" height="25">
+    <span>Gestão simples para negócios que querem crescer.</span>
+    <span>© <span id="ano">2026</span> Vertex Code</span>
+  </footer>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <a href="#" class="wpp-float" data-whatsapp aria-label="Falar no WhatsApp" target="_blank" rel="noopener">
+    <img src="img/whatsapp.svg" alt="" width="30" height="30">
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

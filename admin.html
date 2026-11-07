@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Leads | VertexCode</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <style>
+    :root { --navy:#0f2a4d; --teal:#1bb8a0; --bg:#f8f8f3; --border:#dfe5ea; --muted:#8a97a8; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif; background:var(--bg); color:#33445a; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:20px 28px; background:#fff; border-bottom:1px solid var(--border); }
+    header img { height:30px; }
+    main { padding:28px; max-width:1100px; margin:0 auto; }
+    h1 { font-size:20px; color:var(--navy); margin:0 0 4px; }
+    .sub { font-size:13px; color:var(--muted); margin-bottom:20px; }
+    .login { max-width:360px; margin:80px auto; background:#fff; padding:28px; border-radius:16px; border:1px solid var(--border); }
+    input[type=password], input[type=search] { width:100%; padding:11px 12px; border:1px solid var(--border); border-radius:8px; font:inherit; }
+    button, .btn { background:var(--navy); color:#fff; border:0; border-radius:8px; padding:10px 16px; font:inherit; font-weight:600; cursor:pointer; text-decoration:none; font-size:14px; }
+    button.sec { background:#fff; color:var(--navy); border:1px solid var(--border); }
+    .row { display:flex; gap:10px; margin-top:12px; }
+    .tools { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+    .tools input { flex:1; min-width:200px; }
+    table { width:100%; border-collapse:collapse; background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; font-size:14px; }
+    th, td { padding:12px 14px; text-align:left; border-bottom:1px solid var(--border); }
+    th { background:#f1f4f6; color:var(--navy); font-size:12px; text-transform:uppercase; letter-spacing:.06em; }
+    tr:last-child td { border-bottom:0; }
+    td a { color:var(--teal); font-weight:600; text-decoration:none; }
+    .msg { color:#e5484d; font-size:13px; margin-top:10px; min-height:18px; }
+    .empty { padding:30px; text-align:center; color:var(--muted); }
+    .scroll { overflow-x:auto; }
+    [hidden] { display:none !important; }
+  </style>
+</head>
+<body>
+  <section class="login" id="login">
+    <h1>Painel de leads</h1>
+    <p class="sub">Digite a senha (ADMIN_TOKEN do arquivo .env).</p>
+    <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
+    <div class="row"><button id="entrar" type="button">Entrar</button></div>
+    <div class="msg" id="erro"></div>
+  </section>
+
+  <div id="painel" hidden>
+    <header>
+      <img src="img/logo.svg" alt="VertexCode">
+      <div class="row" style="margin:0">
+        <button class="sec" id="csv" type="button">Baixar CSV</button>
+        <button class="sec" id="sair" type="button">Sair</button>
+      </div>
+    </header>
+    <main>
+      <h1>Leads recebidos <span id="total" style="color:var(--teal)"></span></h1>
+      <p class="sub">Pedidos de orçamento enviados pelo formulário do site.</p>
+      <div class="tools"><input type="search" id="busca" placeholder="Buscar por nome, empresa, contato ou e-mail"></div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Data</th><th>Nome</th><th>Empresa</th><th>Contato</th><th>E-mail</th></tr></thead>
+          <tbody id="corpo"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let leads = [];
+
+    async function buscar(token) {
+      const r = await fetch("/api/leads", { headers: { Authorization: "Bearer " + token } });
+      if (r.status === 401) throw new Error("Senha incorreta.");
+      if (!r.ok) throw new Error((await r.json().catch(() => ({}))).erro || "Erro ao carregar.");
+      return r.json();
+    }
+
+    function celula(tr, texto, href) {
+      const td = document.createElement("td");
+      if (href) { const a = document.createElement("a"); a.href = href; a.textContent = texto; td.appendChild(a); }
+      else td.textContent = texto; // textContent: nada digitado vira HTML
+      tr.appendChild(td);
+    }
+
+    function desenhar() {
+      const q = $("busca").value.trim().toLowerCase();
+      const lista = leads.filter((l) => !q || [l.nome, l.empresa, l.contato, l.email].join(" ").toLowerCase().includes(q));
+      $("total").textContent = "(" + lista.length + ")";
+      const corpo = $("corpo");
+      corpo.replaceChildren();
+      if (!lista.length) {
+        const tr = document.createElement("tr"); const td = document.createElement("td");
+        td.colSpan = 5; td.className = "empty"; td.textContent = "Nenhum lead encontrado."; tr.appendChild(td); corpo.appendChild(tr); return;
+      }
+      for (const l of lista) {
+        const tr = document.createElement("tr");
+        const data = new Date(l.criado_em.replace(" ", "T") + "Z").toLocaleString("pt-BR");
+        celula(tr, data);
+        celula(tr, l.nome);
+        celula(tr, l.empresa);
+        celula(tr, l.contato, "https://wa.me/55" + l.contato.replace(/\D/g, ""));
+        celula(tr, l.email, "mailto:" + l.email);
+        corpo.appendChild(tr);
+      }
+    }
+
+    async function entrar(token) {
+      try {
+        leads = await buscar(token);
+        sessionStorage.setItem("vx_token", token);
+        $("login").hidden = true; $("painel").hidden = false;
+        desenhar();
+      } catch (e) {
+        sessionStorage.removeItem("vx_token");
+        $("erro").textContent = e.message;
+      }
+    }
+
+    $("entrar").onclick = () => entrar($("senha").value);
+    $("senha").onkeydown = (e) => { if (e.key === "Enter") entrar($("senha").value); };
+    $("busca").oninput = desenhar;
+    $("sair").onclick = () => { sessionStorage.removeItem("vx_token"); location.reload(); };
+    $("csv").onclick = async () => {
+      const r = await fetch("/api/leads.csv", { headers: { Authorization: "Bearer " + sessionStorage.getItem("vx_token") } });
+      const blob = await r.blob();
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = "leads.csv"; a.click();
+      URL.revokeObjectURL(a.href);
+    };
+
+    const salvo = sessionStorage.getItem("vx_token");
+    if (salvo) entrar(salvo);
+  </script>
+</body>
+</html>
